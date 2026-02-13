@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Soni 💖</title>
+
+<style>
+body{
+  margin:0;
+  padding:0;
+  background:black;
+  overflow:hidden;
+  font-family:Arial;
+  text-align:center;
+  color:white;
+}
+
+.container{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:90%;
+}
+
+h1{
+  font-size:22px;
+  font-weight:bold;
+}
+
+button{
+  padding:14px 28px;
+  margin:15px;
+  font-size:18px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+}
+
+#yes{background:hotpink;color:white;}
+#no{background:gray;color:white;}
+
+#result{
+  display:none;
+  padding:20px;
+}
+
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
+}
+
+#player{
+  position:absolute;
+  width:0;
+  height:0;
+  border:0;
+}
+</style>
+</head>
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<!-- YouTube Embed -->
+<iframe id="player"
+src="https://www.youtube.com/embed/w9Qo6p4XsXE?autoplay=1&loop=1&playlist=w9Qo6p4XsXE"
+allow="autoplay">
+</iframe>
+
+<div class="container" id="main">
+  <h1>💖 SONI, WILL YOU BE MY VALENTINE? 💖</h1>
+  <button id="yes">YES 💘</button>
+  <button id="no">NO 😢</button>
+</div>
+
+<div id="result"></div>
+
+<script>
+
+/* Fireworks */
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+function firework(){
+  let x=Math.random()*canvas.width;
+  let y=Math.random()*canvas.height/2;
+  for(let i=0;i<80;i++){
+    ctx.beginPath();
+    ctx.arc(x+Math.random()*120-60,y+Math.random()*120-60,2,0,Math.PI*2);
+    ctx.fillStyle=`hsl(${Math.random()*360},100%,60%)`;
+    ctx.fill();
+  }
+}
+
+function startFireworks(){
+  setInterval(()=>{
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    firework();
+  },500);
+}
+
+/* YES */
+document.getElementById("yes").addEventListener("click",function(){
+  document.getElementById("main").style.display="none";
+  const result=document.getElementById("result");
+  result.style.display="block";
+  result.innerHTML=`
+    <h2 style="color:yellow;">
+    💥 I KNEW YOU LOVE ME 💥 <br><br>
+    ( Ab Kaise Mera Valentine Kharab Karogi Motku Golu-Molu )<br><br>
+    ❤️ I LOVE YOU ❤️
+    </h2>
+    <br>
+    <img src="https://media.giphy.com/media/G3va31oEEnIkM/giphy.gif" width="250">
+  `;
+  startFireworks();
+});
+
+/* NO */
+document.getElementById("no").addEventListener("click",function(){
+  document.getElementById("main").style.display="none";
+  const result=document.getElementById("result");
+  result.style.display="block";
+  result.innerHTML=`
+    <h2 style="color:red;">
+    Golu-Molu 😏 itni himmat? <br><br>
+    Maarb na! Chup chaap YES bolo 💘
+    </h2>
+  `;
+});
+
+</script>
+</body>
+</html>
