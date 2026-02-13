@@ -64,9 +64,11 @@ canvas{
 
 <canvas id="fireworks"></canvas>
 
-<!-- YouTube Embed -->
+<!-- Hidden YouTube Player (will start on YES click) -->
 <iframe id="player"
-src="https://www.youtube.com/embed/w9Qo6p4XsXE?autoplay=1&loop=1&playlist=w9Qo6p4XsXE"
+width="0"
+height="0"
+src=""
 allow="autoplay">
 </iframe>
 
@@ -104,8 +106,13 @@ function startFireworks(){
   },500);
 }
 
-/* YES */
+/* YES CLICK */
 document.getElementById("yes").addEventListener("click",function(){
+
+  // Start Song
+  document.getElementById("player").src =
+  "https://www.youtube.com/embed/w9Qo6p4XsXE?autoplay=1&loop=1&playlist=w9Qo6p4XsXE";
+
   document.getElementById("main").style.display="none";
   const result=document.getElementById("result");
   result.style.display="block";
@@ -121,7 +128,7 @@ document.getElementById("yes").addEventListener("click",function(){
   startFireworks();
 });
 
-/* NO */
+/* NO CLICK */
 document.getElementById("no").addEventListener("click",function(){
   document.getElementById("main").style.display="none";
   const result=document.getElementById("result");
